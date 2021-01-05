@@ -1,0 +1,88 @@
+
+
+
+
+{% load static %}
+
+
+<link rel="stylesheet" href="{% static 'css/nav.css' %}">
+
+<div class="container">
+  <nav>
+  <ul class="nav">
+    <li><a href="/home/">Home</a></li>
+    <li><a href="#">Plots</a>
+      <ul>
+          {% if name == "admin" %}
+        <li><a href="/createplot/">New Plot</a></li>
+              <li><a href="/editplot/">Edit Plot</a></li>
+          {% endif %}
+        <li><a href="/viewplot/">View Plot</a></li>
+      <li><a href="{% url 'viewallplots' %}">view all plots</a></li>
+      </ul>
+    </li>
+      <li><a href="#">Appartment</a>
+          <ul>
+              {% if name == "admin" %}
+              <li><a href="/addappartment/">New Appartment
+              </a></li>
+              {% endif %}
+            <li><a href="/viewappartments/">View Appartment</a></li>
+          </ul>
+      </li>
+    <li><a href="#">Sales</a>
+      <ul>
+        <li><a href="#">Sales</a>
+            <ul>
+                {% if name == "admin" %}
+            <li><a href="/saleentry/">New Entry</a></li>
+            <li><a href="/altersale/">Alter Details</a></li>
+                {% endif %}
+            <li><a href="/viewsale/">View Deatils</a></li>
+
+          </ul>
+
+        </li>
+        <li><a href="#">Payments</a>
+          <ul>
+              {% if name == "admin" %}
+            <li><a href="/makepayment/">Make Payment</a></li>
+              {% endif %}
+            <li><a href="/allpayments/">View Payments</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Reports</a>
+            <ul>
+                {% if name == "admin" %}
+            <li><a href="/sundrydebit/">Sundry Debitors</a></li>
+                {% endif %}
+            <li><a href="/sundrycredit/">Sundry Creditors</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </li>
+
+      <li><a href="#">Employees</a>
+      <ul>
+          {% if name == "admin" %}
+        <li><a href="/addemployee/">Add Employee</a></li>
+          {% endif %}
+        <li><a href="/viewemp/">View Employee</a></li>
+
+      </ul>
+    </li>
+
+    <li><a href="#">Reports</a>
+      <ul>
+        <li><a href="/soldplots/">Sold Plots</a></li>
+        <li><a href="/reservedplots/">Reserved Plots</a></li>
+        <li><a href="/vacantplots/">Vacant Plots</a></li>
+
+      </ul>
+    </li>
+    <li><a href="/about/">About</a></li>
+      <li><a href="/logout/">Logout</a></li>
+  </ul>
+</nav>
+</div>

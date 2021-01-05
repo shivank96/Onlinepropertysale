@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Appartments</title>
+  </head>
+  <body>
+  {% include "head.html" %}
+{% include 'menu.html' %}
+
+<div style="margin-top: 100px">
+  <table align="center" border="2">
+
+     <tr bgcolor="#5f9ea0" align="center">
+                <th width="150">plotno</th>
+                <th width="150">surveyno</th>
+                <th width="150">costpersqyard</th>
+                <th width="150">roadno</th>
+                <th width="150">totalcost</th>
+
+         {% if name == "admin" %}
+         <th width="150">Delete</th>
+         {% endif %}
+            </tr>
+
+        {% for x in info %}
+            <tr bgcolor="#fffacd" align="center">
+                <th width="100">{{ x.plotno }}</th>
+                <th width="100">{{ x.surveyno }}</th>
+                <th width="100">{{ x.costpersqyard }}</th>
+                <th width="100">{{ x.roadno }}</th>
+                <th width="100">{{ x.totalcost }}</th>
+            {% if name == "admin" %}
+                <th> <a href="{% url 'deleteplot' %}?no={{ x.plotno }}">Delete</a></th>
+            {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+<form action="{% url 'home' %}" method="post">
+        {% csrf_token %}
+  <tr>
+     <th colspan="2">
+
+           <center> <button type="submit" class="btn btn-outline-success">Back</button></center>
+
+        </th>
+  </tr>
+        </form>
+
+
+</div>
+  {% if messages %}
+
+    <div style="margin-top: 100px">
+    {% for message in messages %}
+
+        <center><h1 style="margin-top: 150px; font-family:'Berlin Sans FB Demi' ; color: sandybrown; ">
+            {{ message }}</h1></center>
+    {% endfor %}
+{% endif %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+{% load static %}
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>View Plot</title>
+  </head>
+  <body>
+
+
+
+
+  {% include 'head.html' %}
+{% include 'menu.html' %}
+
+
+<table  style="margin-top: 150px" bgcolor="#a9a9a9" align="center" border="2">
+<th colspan="3" bgcolor="#d2b48c"> Click On Plot No To view All Details</th>
+    <tr bgcolor="">
+        <th>PlotNo</th>
+        <th>RoadNo</th>
+        <th>Survey No</th>
+    </tr>
+    {% for x in data %}
+        <tr bgcolor="#f5deb3">
+            <td align="center"><a data-toggle="tooltip" data-placement="top" title="Click Here To View Full Details" href="/plotdetails{{ x.plotno }}/">{{ x.plotno }}</a></td>
+            <td>{{ x.roadno }}</td>
+            <td>{{ x.surveyno }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+        <form action="/home/" method="post" style="text-align: center">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-warning">Back</button>
+        </form>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+</html>
+

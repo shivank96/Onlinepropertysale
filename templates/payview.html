@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<style>
+    td{
+        color: #c4dce8;
+        font-family: "Agency FB";
+    }
+</style>
+    <title>new Entry</title>
+  </head>
+  <body>
+
+  {% include 'head.html' %}
+{% include 'menu.html' %}
+
+
+
+<form action="/paymoney/" method="post">
+    {% csrf_token %}
+
+  <table border='0' width='480px' cellpadding='0' cellspacing='0' align='center'>
+<tr align="center">
+   <td><h1 style="color: #f5dd5d; font-family: Roboto">Pay View</h1></td>
+</tr>
+{% for x in data %}
+<table border='0' width='480px' cellpadding='0' cellspacing='0' align='center'>
+<tr>
+
+    <td align='center'>Plot No:</td>
+    <td><input type='number' name='pno' value="{{ x.plotno }}" readonly></td>
+</tr>
+<tr> <td>&nbsp;</td> </tr>
+<tr>
+    <td align='center'>Sale Value:</td>
+    <td><input type='number' name='sale' id="trx1" value="{{ x.salevalue }}" onkeyup="calc(); " readonly></td>
+</tr>
+
+    <tr> <td>&nbsp;</td> </tr>
+<tr>
+    <td align='center'>Balance:</td>
+    <td><input type='number' name='' id="blc" value="{{ x.balance }}" readonly>
+    <input type="hidden" name="balance" id="rbl"></td>
+</tr>
+    <tr> <td>&nbsp;</td> </tr>
+
+
+
+
+<tr>
+    <td align='center'>Amount:</td>
+    <td><input type='number' name='amount' id="amt"  value="" onkeyup="calc();"></td>
+</tr>
+<tr> <td>&nbsp;</td> </tr>
+
+<tr>
+    <td align='center'>Check No:</td>
+    <td><input type='text' name='check' id=""  ></td>
+</tr>
+    <tr> <td>&nbsp;</td> </tr>
+    <tr> <td>&nbsp;</td> </tr>
+<tr>
+    <td align='center'>Payee Name:</td>
+    <td><input type='text' name='payeename' id=""  ></td>
+</tr>
+    <tr> <td>&nbsp;</td> </tr>
+
+
+<tr class="hidden">
+    <td align='center'>Date Of Sale:</td>
+    <td><input type='date' name='saledate' value="{{ x.dateofsale }}"></td>
+</tr>
+<tr> <td>&nbsp;</td> </tr>
+
+    <tr> <td>&nbsp;</td> </tr>
+<tr class="hidden">
+    <td align='center'>Installment Option:</td>
+    <td><select name="installment">
+        <option value="{{ x.installment }}">{{ x.installment }}</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select></td>
+</tr>
+
+
+<table border='0' cellpadding='0' cellspacing='0' width='480px' align='center'>
+<tr>
+    <td align='center'><input type='submit' name='Save' value="Pay"></td>
+</tr>
+</table>
+
+</table>
+      {% endfor %}
+  </table>
+
+
+
+
+</form>
+</form>
+  <form action="{% url 'home' %}" method="post">
+        {% csrf_token %}
+  <tr>
+     <th colspan="2">
+
+           <center> <button type="submit" class="btn btn-outline-success">Back</button></center>
+
+        </th>
+  </tr>
+        </form>
+
+<script>
+
+    function calc() {
+       var txtFirstNumberValue = document.getElementById('blc').value;
+       var txtSecondNumberValue = document.getElementById('amt').value;
+       if (txtFirstNumberValue == "")
+           txtFirstNumberValue = 0;
+       if (txtSecondNumberValue == "")
+           txtSecondNumberValue = 0;
+
+       var result = parseInt(txtFirstNumberValue) - parseInt(txtSecondNumberValue);
+       if (!isNaN(result)) {
+           document.getElementById('rbl').value = result;
+       }
+   }
+
+
+
+
+</script>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+</html>
